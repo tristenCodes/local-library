@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "node --inspect ./bin/www",
     "devstart": "nodemon ./bin/www",
+    "tailwindstart": "npx tailwindcss -i ./global.css -o ./public/stylesheets/globaloutput.css --watch",
     "serverstart": "SET DEBUG=local-library:* & npm start"
   },
   "dependencies": {
@@ -19,5 +20,17 @@
   "devDependencies": {
     "dotenv": "^16.4.4",
     "nodemon": "^3.0.3"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "./views",
+      "./public/stylesheets/",
+      "./routes/"
+    ],
+    "ext": "js,json,css,pug",
+    "ignore": [
+      "src/tmp/*"
+    ],
+    "exec": "node ./bin/www"
   }
 }

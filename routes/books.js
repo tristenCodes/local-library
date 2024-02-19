@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 const booksModel = require("../models/book");
 const author = require("../models/author");
+const genre = require("../models/genre");
 
 router.get("/", async (req, res, next) => {
   const bookList = await booksModel.find();
@@ -12,8 +13,18 @@ router.get("/", async (req, res, next) => {
       url: book.url,
     };
   });
-  console.log(bookListWithLinks);
   res.render("books", { bookList: bookListWithLinks });
+});
+
+router.get("/create-book", async (req, res, next) => {
+  const authors = await author.find();
+  const genres = await genre.find();
+  res.render("createBook", { authors, genres });
+});
+
+router.post("/create-book", async (req, res, next) => {
+  console.log(req.body);
+  res.send(req.body);
 });
 
 router.get("/:id", async (req, res, next) => {

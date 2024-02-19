@@ -2,5 +2,7 @@ extends layout
 
 block content
     each item in bookList
-        a(href=item.url) #{item.title}
+        a(href=item.url,) #{item.title}
         p= item.summary
+
+    a(href='/books/create-book') Create new book

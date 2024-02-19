@@ -1,0 +1,24 @@
+extends layout
+
+block content
+    h1 Add Book
+    form(method='POST' action='/books/create-book')
+        .form-group
+            label(for='title') Book Title:
+            input#title.form-control(type='text' name='title')
+        .form-group
+            select(name="bookAuthor" id="bookAuthor")
+                for author in authors
+                    option(value=author._id)= author.name
+        .form-group
+            label(for='summary') Summary:
+            textarea#summary.form-control(name='summary')
+        .form-group
+            label(for='isbn') ISBN:
+            input#isbn.form-control(type='text' name='isbn')
+        .form-group
+            select(name="genre" id="genre")
+                for genre in genres
+                    option(value=genre._id)= genre.name
+        .form-group
+            button.btn.btn-primary(type='submit') Submit
